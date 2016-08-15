@@ -33,18 +33,10 @@ namespace HelloWorldService
         /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service instance.</param>
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
-            // TODO: Replace the following sample code with your own logic 
-            //       or remove this RunAsync override if it's not needed in your service.
-
-            long iterations = 0;
-
             while (true)
             {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                ServiceEventSource.Current.ServiceMessage(this, "Working-{0}", ++iterations);
-
-                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+                ServiceEventSource.Current.ServiceMessage(this, "Hello World at " + DateTime.Now.ToLongTimeString());
+                await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
             }
         }
     }
